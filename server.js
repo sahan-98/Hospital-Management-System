@@ -12,9 +12,10 @@ require("dotenv").config({ path: __dirname + "/.env" });
 /* import *
  *  routes *
  *    here */
+const DoctorRoutes = require('./routes/doctorRoutes');
+
 
 const MONGO_DB_PASSWORD = process.env["MONGO_DB_PASSWORD"];
-// const connectionString = `mongodb+srv://Admin:${MONGO_DB_PASSWORD}@icaf-cluster.pahle.mongodb.net/icafDB?retryWrites=true&w=majority`;
 const connectionString = `mongodb+srv://hospital_MS:${MONGO_DB_PASSWORD}@hospitalms.zw6pwlv.mongodb.net/?retryWrites=true&w=majority`;
 
 (app = express()), (port = process.env.PORT || 4000);
@@ -33,6 +34,8 @@ app.use(errorHandler);
  *  routes *
  *    here */
 //app.use('/', UserRoutes);
+app.use('/api/v1/doctors/', DoctorRoutes);
+
 
 mongoose
   .connect(connectionString)
